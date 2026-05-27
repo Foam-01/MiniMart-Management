@@ -5,7 +5,7 @@ namespace TestConsole.day2
         public Oper5()
         {
             
-
+            Console.WriteLine(((5 + 5) * 5) -5);
         }
     }
 }

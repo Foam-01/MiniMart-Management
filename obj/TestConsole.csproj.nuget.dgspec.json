@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\GIGABYTE\\Desktop\\TestConsole\\TestConsole.csproj": {}
+    "C:\\Users\\GIGABYTE\\Desktop\\MiniMart-Management\\TestConsole.csproj": {}
   },
   "projects": {
-    "C:\\Users\\GIGABYTE\\Desktop\\TestConsole\\TestConsole.csproj": {
+    "C:\\Users\\GIGABYTE\\Desktop\\MiniMart-Management\\TestConsole.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\GIGABYTE\\Desktop\\TestConsole\\TestConsole.csproj",
+        "projectUniqueName": "C:\\Users\\GIGABYTE\\Desktop\\MiniMart-Management\\TestConsole.csproj",
         "projectName": "TestConsole",
-        "projectPath": "C:\\Users\\GIGABYTE\\Desktop\\TestConsole\\TestConsole.csproj",
+        "projectPath": "C:\\Users\\GIGABYTE\\Desktop\\MiniMart-Management\\TestConsole.csproj",
         "packagesPath": "C:\\Users\\GIGABYTE\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\GIGABYTE\\Desktop\\TestConsole\\obj\\",
+        "outputPath": "C:\\Users\\GIGABYTE\\Desktop\\MiniMart-Management\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\GIGABYTE\\AppData\\Roaming\\NuGet\\NuGet.Config"
