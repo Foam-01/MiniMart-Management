@@ -5,10 +5,12 @@
 //TestConsole.day2.Object3.Run();
 //TestConsole.day3.if1.Run();
 //TestConsole.day3.if6.Run();
+//TestConsole.day3.AppGrade.Run();
 //TestConsole.day4.SummaryNumber.Run();
 //TestConsole.day4.NesTedLoop.Run();
 //TestConsole.day4.Multiplication.Run();
-TestConsole.day4.Vote.Run();
+//TestConsole.day4.Table8x8.Run();
+TestConsole.day5.array2D.Run();
 
-//TestConsole.day3.AppGrade.Run();
+
 //dotnet run
