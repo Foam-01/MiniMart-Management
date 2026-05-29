@@ -8,7 +8,7 @@
 //TestConsole.day4.SummaryNumber.Run();
 //TestConsole.day4.NesTedLoop.Run();
 //TestConsole.day4.Multiplication.Run();
-TestConsole.day4.Stock.Run();
+TestConsole.day4.Vote.Run();
 
 //TestConsole.day3.AppGrade.Run();
 //dotnet run
