@@ -10,7 +10,7 @@
 //TestConsole.day4.NesTedLoop.Run();
 //TestConsole.day4.Multiplication.Run();
 //TestConsole.day4.Table8x8.Run();
-TestConsole.day5.Array2DLoop.Run();
+TestConsole.day5.SearchInArray.Run();
 
 
 //dotnet run
