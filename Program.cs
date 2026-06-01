@@ -11,7 +11,8 @@
 //TestConsole.day4.Multiplication.Run();
 //TestConsole.day4.Table8x8.Run();
 //TestConsole.day5.ListSortAndReverse.Run();
-TestConsole.day5.MyGeneric.Run();
+//TestConsole.day5.MyGeneric.Run();
+TestConsole.day6.MyDate.Run();
 
 
 //dotnet run
