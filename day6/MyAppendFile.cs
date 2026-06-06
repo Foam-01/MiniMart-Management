@@ -16,6 +16,7 @@ namespace TestConsole.day6
             {
                 File.AppendAllText(target, String.Format("Line {0}\n", i + 1));
             }
+            Console.WriteLine("เขียนไฟล์สำเร็จแล้วครับ");
         }
     }
 }
