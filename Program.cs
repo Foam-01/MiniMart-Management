@@ -12,7 +12,7 @@
 //TestConsole.day4.Table8x8.Run();
 //TestConsole.day5.ListSortAndReverse.Run();
 //TestConsole.day5.MyGeneric.Run();
-TestConsole.day6.MyReadFile.Run();
+TestConsole.day6.MyWriteFile.Run();
 
 
 //dotnet run
