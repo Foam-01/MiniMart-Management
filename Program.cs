@@ -14,5 +14,6 @@
 //TestConsole.day5.MyGeneric.Run();
 //TestConsole.day6.ReadAndWriteBinaryFile.Run();
 //TestConsole.day7.ObjectDog.Run();
-new TestConsole.day7.MyOverloadMethod();
+//new TestConsole.day7.MyStaticMethod();
+TestConsole.day7.MyStaticMethod.myMethod();
 //dotnet run
