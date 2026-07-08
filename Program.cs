@@ -13,6 +13,6 @@
 //TestConsole.day5.ListSortAndReverse.Run();
 //TestConsole.day5.MyGeneric.Run();
 //TestConsole.day6.ReadAndWriteBinaryFile.Run();
-TestConsole.day7.ObjectDog.Run();
-
+//TestConsole.day7.ObjectDog.Run();
+new TestConsole.day7.MyOverloadMethod();
 //dotnet run
