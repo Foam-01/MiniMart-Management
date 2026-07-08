@@ -16,4 +16,7 @@
 //TestConsole.day7.ObjectDog.Run();
 //new TestConsole.day7.MyStaticMethod();
 TestConsole.day7.MyStaticMethod.myMethod();
+int x = TestConsole.day7.MyStaticMethod.getValue();
+
+Console.WriteLine("Value = {0}", x);
 //dotnet run

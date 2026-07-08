@@ -8,5 +8,9 @@ namespace TestConsole.day7
         {
             Console.WriteLine("Hello My Static Method");
         }
+
+        public static int getValue() {
+            return 100;
+        }
     }
 }
