@@ -1,7 +1,7 @@
 ﻿
 using TestConsole.day8;
 
-new MyTryCatch();
+new MyThrow();
 
 // BookModel book = new BookModel();
 // book.id = 1;
