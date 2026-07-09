@@ -1,4 +1,5 @@
 ﻿using TestConsole.day3;
+using TestConsole.day7;
 
 //TestConsole.day2.Object1.Run();
 //TestConsole.day2.Object2.Run();
@@ -15,8 +16,16 @@
 //TestConsole.day6.ReadAndWriteBinaryFile.Run();
 //TestConsole.day7.ObjectDog.Run();
 //new TestConsole.day7.MyStaticMethod();
-TestConsole.day7.MyStaticMethod.myMethod();
-int x = TestConsole.day7.MyStaticMethod.getValue();
+// TestConsole.day7.MyStaticMethod.myMethod();
+// int x = TestConsole.day7.MyStaticMethod.getValue();
+ Cat c = new Cat();
+            c.leg = 4;
+            c.color = "White";
+            c.eye = 2;
+            c.echo();
 
-Console.WriteLine("Value = {0}", x);
+
+
+            Console.WriteLine("leg = {0}, color = {1}, eye = {2}", c.leg, c.color, c.eye);
+// Console.WriteLine("Value = {0}", x);
 //dotnet run
