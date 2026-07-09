@@ -1,5 +1,19 @@
-﻿using TestConsole.day3;
-using TestConsole.day7;
+﻿
+using TestConsole.day8;
+
+new MyTryCatch();
+
+// BookModel book = new BookModel();
+// book.id = 1;
+// book.isbn = "978-3-16-148410-0";
+// book.name = "C# Programming";
+// book.author = new AuthorModal(1, "John Doe");
+
+// Console.WriteLine(book.id);
+// Console.WriteLine(book.isbn);
+// Console.WriteLine(book.name);
+// Console.WriteLine(book.author?.id);
+// Console.WriteLine(book.author?.name);
 
 //TestConsole.day2.Object1.Run();
 //TestConsole.day2.Object2.Run();
@@ -18,14 +32,12 @@ using TestConsole.day7;
 //new TestConsole.day7.MyStaticMethod();
 // TestConsole.day7.MyStaticMethod.myMethod();
 // int x = TestConsole.day7.MyStaticMethod.getValue();
- Cat c = new Cat();
-            c.leg = 4;
-            c.color = "White";
-            c.eye = 2;
-            c.echo();
+//  Cat c = new Cat();
+//             c.leg = 4;
+//             c.color = "White";
+//             c.eye = 2;
+//             c.echo();
 
-
-
-            Console.WriteLine("leg = {0}, color = {1}, eye = {2}", c.leg, c.color, c.eye);
+//             Console.WriteLine("leg = {0}, color = {1}, eye = {2}", c.leg, c.color, c.eye);
 // Console.WriteLine("Value = {0}", x);
 //dotnet run
