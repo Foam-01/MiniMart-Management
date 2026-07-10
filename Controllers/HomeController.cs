@@ -11,5 +11,12 @@ namespace TestConsole.Controllers
         {
             return Ok(new { message = "Hello" });
         }
+
+        [HttpPost]
+        [Route("[action]/{name}")]
+        public IActionResult PostData(string name)
+        {
+            return Ok(new { message = "Hello " + name });
+        }
     }
 }
