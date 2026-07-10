@@ -12,7 +12,12 @@ namespace TestConsole.day4
           while (totalStock >= 0)
             {
                 Console.Write("Enter the quantity to purchase: ");
-                int qty = int.Parse(Console.ReadLine());
+                string input = Console.ReadLine() ?? "0";
+                if (!int.TryParse(input, out int qty))
+                {
+                    Console.WriteLine("Invalid quantity. Please enter a valid number.");
+                    continue;
+                }
 
                 if (qty > totalStock)
                 {
