@@ -18,5 +18,12 @@ namespace TestConsole.Controllers
         {
             return Ok(new { message = "Hello " + name });
         }
+
+        [HttpPut]
+        [Route("[action]")]
+        public IActionResult MyPut()
+        {
+            return Ok(new { message = "my put" });
+        }
     }
 }
