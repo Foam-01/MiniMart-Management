@@ -54,3 +54,10 @@ D:\Git Desktop\MiniMart-Management\obj\Debug\net10.0\staticwebassets.build.json.
 D:\Git Desktop\MiniMart-Management\obj\Debug\net10.0\staticwebassets.development.json
 D:\Git Desktop\MiniMart-Management\obj\Debug\net10.0\staticwebassets.build.endpoints.json
 D:\Git Desktop\MiniMart-Management\obj\Debug\net10.0\swae.build.ex.cache
+D:\Git Desktop\MiniMart-Management\bin\Debug\net10.0\Microsoft.OpenApi.dll
+D:\Git Desktop\MiniMart-Management\bin\Debug\net10.0\Swashbuckle.AspNetCore.Swagger.dll
+D:\Git Desktop\MiniMart-Management\bin\Debug\net10.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+D:\Git Desktop\MiniMart-Management\bin\Debug\net10.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+D:\Git Desktop\MiniMart-Management\obj\Debug\net10.0\TestConsole.csproj.AssemblyReference.cache
+D:\Git Desktop\MiniMart-Management\obj\Debug\net10.0\TestConsole.MvcApplicationPartsAssemblyInfo.cs
+D:\Git Desktop\MiniMart-Management\obj\Debug\net10.0\TestCons.AA59A120.Up2Date
