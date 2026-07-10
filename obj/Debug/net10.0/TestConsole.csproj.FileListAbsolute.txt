@@ -42,3 +42,15 @@ D:\Git Desktop\MiniMart-Management\obj\Debug\net10.0\refint\TestConsole.dll
 D:\Git Desktop\MiniMart-Management\obj\Debug\net10.0\TestConsole.pdb
 D:\Git Desktop\MiniMart-Management\obj\Debug\net10.0\TestConsole.genruntimeconfig.cache
 D:\Git Desktop\MiniMart-Management\obj\Debug\net10.0\ref\TestConsole.dll
+D:\Git Desktop\MiniMart-Management\bin\Debug\net10.0\TestConsole.staticwebassets.endpoints.json
+D:\Git Desktop\MiniMart-Management\obj\Debug\net10.0\rpswa.dswa.cache.json
+D:\Git Desktop\MiniMart-Management\obj\Debug\net10.0\TestConsole.MvcApplicationPartsAssemblyInfo.cache
+D:\Git Desktop\MiniMart-Management\obj\Debug\net10.0\rjimswa.dswa.cache.json
+D:\Git Desktop\MiniMart-Management\obj\Debug\net10.0\rjsmrazor.dswa.cache.json
+D:\Git Desktop\MiniMart-Management\obj\Debug\net10.0\rjsmcshtml.dswa.cache.json
+D:\Git Desktop\MiniMart-Management\obj\Debug\net10.0\scopedcss\bundle\TestConsole.styles.css
+D:\Git Desktop\MiniMart-Management\obj\Debug\net10.0\staticwebassets.build.json
+D:\Git Desktop\MiniMart-Management\obj\Debug\net10.0\staticwebassets.build.json.cache
+D:\Git Desktop\MiniMart-Management\obj\Debug\net10.0\staticwebassets.development.json
+D:\Git Desktop\MiniMart-Management\obj\Debug\net10.0\staticwebassets.build.endpoints.json
+D:\Git Desktop\MiniMart-Management\obj\Debug\net10.0\swae.build.ex.cache

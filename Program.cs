@@ -1,7 +1,14 @@
-﻿
-using TestConsole.day8;
+﻿var builder = WebApplication.CreateBuilder(args);
 
-new NestedTryCatch();
+builder.Services.AddControllers();
+
+var app = builder.Build();
+app.MapControllers();
+
+app.Run();
+// using TestConsole.day8;
+
+// new NestedTryCatch();
 
 // BookModel book = new BookModel();
 // book.id = 1;
