@@ -13,22 +13,23 @@ namespace TestConsole.Controllers
         }
 
         [HttpPost]
-        [Route("[action]/{name}")]
+        [Route("/{name}")]
         public IActionResult PostData(string name)
         {
             return Ok(new { message = "Hello " + name });
         }
 
         [HttpPut]
-        [Route("[action]")]
+        [Route("")]
         public IActionResult MyPut()
         {
             return Ok(new { message = "my put" });
         }
 
         [HttpDelete]
-        [Route("[action]/{id}")]
-        public IActionResult Delete(int id) {
+        [Route("/{id}")]
+        public IActionResult Delete(int id)
+        {
             return Ok(new { message = "delete " + id });
         }
     }
