@@ -61,3 +61,5 @@ D:\Git Desktop\MiniMart-Management\bin\Debug\net10.0\Swashbuckle.AspNetCore.Swag
 D:\Git Desktop\MiniMart-Management\obj\Debug\net10.0\TestConsole.csproj.AssemblyReference.cache
 D:\Git Desktop\MiniMart-Management\obj\Debug\net10.0\TestConsole.MvcApplicationPartsAssemblyInfo.cs
 D:\Git Desktop\MiniMart-Management\obj\Debug\net10.0\TestCons.AA59A120.Up2Date
+D:\Git Desktop\MiniMart-Management\bin\Debug\net10.0\DotNetEnv.dll
+D:\Git Desktop\MiniMart-Management\bin\Debug\net10.0\Sprache.dll

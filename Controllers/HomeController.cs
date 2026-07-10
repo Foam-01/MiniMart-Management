@@ -25,5 +25,11 @@ namespace TestConsole.Controllers
         {
             return Ok(new { message = "my put" });
         }
+
+        [HttpDelete]
+        [Route("[action]/{id}")]
+        public IActionResult Delete(int id) {
+            return Ok(new { message = "delete " + id });
+        }
     }
 }
