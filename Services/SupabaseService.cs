@@ -1,33 +1,54 @@
 using System;
-using System.Net.Http;
-using System.Net.Http.Headers;
+using System.IO;
 using System.Text.Json;
+using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
+using Npgsql;
 
 namespace TestConsole.Services
 {
     public class SupabaseService
     {
-        private readonly HttpClient _http;
-        private readonly string _url;
+        private readonly string _connectionString;
 
         public SupabaseService(IConfiguration config)
         {
-            // Try IConfiguration first, then fallback to environment variables
-            _url = config["SUPABASE_URL"]?.TrimEnd('/')
-                   ?? Environment.GetEnvironmentVariable("SUPABASE_URL")?.TrimEnd('/')
-                 ?? TryLoadFromDotEnv("SUPABASE_URL")?.TrimEnd('/')
-                 ?? throw new InvalidOperationException("SUPABASE_URL not set");
-            var key = config["SUPABASE_SECRET_KEY"]
-                      ?? Environment.GetEnvironmentVariable("SUPABASE_SECRET_KEY")
-                 ?? TryLoadFromDotEnv("SUPABASE_SECRET_KEY")
-                 ?? throw new InvalidOperationException("SUPABASE_SECRET_KEY not set");
+            var rawConnectionString = config["DB_CONNECTION_STRING"]
+                ?? Environment.GetEnvironmentVariable("DB_CONNECTION_STRING")
+                ?? TryLoadFromDotEnv("DB_CONNECTION_STRING")
+                ?? config["DATABASE_URL"]
+                ?? Environment.GetEnvironmentVariable("DATABASE_URL")
+                ?? TryLoadFromDotEnv("DATABASE_URL")
+                ?? "Host=aws-0-ap-southeast-1.pooler.supabase.com;Port=6543;Database=postgres;Username=postgres.yafhubewsksmkwnektxj;Password=As0850505437;SSL Mode=Require;Trust Server Certificate=true";
 
-            _http = new HttpClient();
-            _http.BaseAddress = new Uri(_url);
-            _http.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", key);
-            _http.DefaultRequestHeaders.Add("apikey", key);
-            _http.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            _connectionString = ConvertPostgresUriToConnectionString(rawConnectionString);
+        }
+
+        private static string ConvertPostgresUriToConnectionString(string uriString)
+        {
+            if (string.IsNullOrWhiteSpace(uriString)) return uriString;
+            if (!uriString.StartsWith("postgresql://", StringComparison.OrdinalIgnoreCase) && 
+                !uriString.StartsWith("postgres://", StringComparison.OrdinalIgnoreCase))
+            {
+                return uriString;
+            }
+
+            try
+            {
+                var uri = new Uri(uriString);
+                var userInfo = uri.UserInfo.Split(':');
+                var username = userInfo[0];
+                var password = userInfo.Length > 1 ? Uri.UnescapeDataString(userInfo[1]) : "";
+                var host = uri.Host;
+                var port = uri.Port == -1 ? 5432 : uri.Port;
+                var database = uri.AbsolutePath.TrimStart('/');
+
+                return $"Host={host};Port={port};Database={database};Username={username};Password={password};SSL Mode=Require;Trust Server Certificate=true";
+            }
+            catch
+            {
+                return uriString;
+            }
         }
 
         private static string? TryLoadFromDotEnv(string key)
@@ -61,24 +82,38 @@ namespace TestConsole.Services
             return null;
         }
 
-        public async Task<(bool Success, int StatusCode, string Body, JsonElement? Json)> GetTableAsync(string table)
+        public async Task<(bool Success, string Message, string? Detail)> TestConnectionAsync()
         {
-            var resp = await _http.GetAsync($"/rest/v1/{table}?select=*");
-            var status = (int)resp.StatusCode;
-            string body = string.Empty;
-            JsonElement? json = null;
             try
             {
-                body = await resp.Content.ReadAsStringAsync();
-                if (resp.Content.Headers.ContentType?.MediaType == "application/json" && !string.IsNullOrWhiteSpace(body))
-                {
-                    using var doc = JsonDocument.Parse(body);
-                    json = doc.RootElement.Clone();
-                }
-            }
-            catch { }
+                using var conn = new NpgsqlConnection(_connectionString);
+                await conn.OpenAsync();
 
-            return (resp.IsSuccessStatusCode, status, body, json);
+                using var cmd = new NpgsqlCommand("SELECT 1;", conn);
+                await cmd.ExecuteScalarAsync();
+
+                return (true, "Connected successfully to Supabase Database!", null);
+            }
+            catch (NpgsqlException ex)
+            {
+                var builder = new NpgsqlConnectionStringBuilder(_connectionString);
+                var masked = $"Host={builder.Host};Port={builder.Port};Database={builder.Database};Username={builder.Username};Password=***";
+                return (false, "PostgreSQL Connection Error", $"ErrorCode: {ex.SqlState}, Message: {ex.Message}, Connection Info: {masked}");
+            }
+            catch (Exception ex)
+            {
+                string masked;
+                try
+                {
+                    var builder = new NpgsqlConnectionStringBuilder(_connectionString);
+                    masked = $"Host={builder.Host};Port={builder.Port};Database={builder.Database};Username={builder.Username};Password=***";
+                }
+                catch
+                {
+                    masked = "Invalid Connection String format";
+                }
+                return (false, "Connection Failed", $"Error: {ex.Message}, Connection Info: {masked}");
+            }
         }
     }
 }

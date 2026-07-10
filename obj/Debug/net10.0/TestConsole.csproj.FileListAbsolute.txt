@@ -63,3 +63,4 @@ D:\Git Desktop\MiniMart-Management\obj\Debug\net10.0\TestConsole.MvcApplicationP
 D:\Git Desktop\MiniMart-Management\obj\Debug\net10.0\TestCons.AA59A120.Up2Date
 D:\Git Desktop\MiniMart-Management\bin\Debug\net10.0\DotNetEnv.dll
 D:\Git Desktop\MiniMart-Management\bin\Debug\net10.0\Sprache.dll
+D:\Git Desktop\MiniMart-Management\bin\Debug\net10.0\Npgsql.dll

@@ -13,27 +13,20 @@ namespace TestConsole.Controllers
             _config = config;
         }
 
-        [HttpGet("{table}")]
-        public async Task<IActionResult> GetTable(string table)
+        [HttpGet("test-connection")]
+        public async Task<IActionResult> TestConnection()
         {
             try
             {
                 var svc = new SupabaseService(_config);
-                var result = await svc.GetTableAsync(table);
+                var result = await svc.TestConnectionAsync();
 
-                if (result.Success && result.Json.HasValue)
-                    return Ok(result.Json.Value);
+                if (result.Success)
+                {
+                    return Ok(new { success = true, message = result.Message });
+                }
 
-                // Return Supabase response details for debugging
-                return StatusCode(result.StatusCode, new { success = result.Success, status = result.StatusCode, body = result.Body });
-            }
-            catch (InvalidOperationException ex)
-            {
-                return BadRequest(new { error = ex.Message });
-            }
-            catch (HttpRequestException ex)
-            {
-                return StatusCode(502, new { error = ex.Message });
+                return StatusCode(500, new { success = false, message = result.Message, detail = result.Detail });
             }
             catch (Exception ex)
             {
