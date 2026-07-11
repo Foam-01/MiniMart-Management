@@ -596,32 +596,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\sitthidech.t\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\GIGABYTE\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Git Desktop\\MiniMart-Management\\TestConsole.csproj",
+      "projectUniqueName": "C:\\Users\\GIGABYTE\\Desktop\\MiniMart-Management\\TestConsole.csproj",
       "projectName": "TestConsole",
-      "projectPath": "D:\\Git Desktop\\MiniMart-Management\\TestConsole.csproj",
-      "packagesPath": "C:\\Users\\sitthidech.t\\.nuget\\packages\\",
-      "outputPath": "D:\\Git Desktop\\MiniMart-Management\\obj\\",
+      "projectPath": "C:\\Users\\GIGABYTE\\Desktop\\MiniMart-Management\\TestConsole.csproj",
+      "packagesPath": "C:\\Users\\GIGABYTE\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\GIGABYTE\\Desktop\\MiniMart-Management\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\sitthidech.t\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\GIGABYTE\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net10.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
