@@ -24,6 +24,11 @@ namespace TestConsole.Services
             _connectionString = ConvertPostgresUriToConnectionString(rawConnectionString);
         }
 
+        public NpgsqlConnection CreateConnection()
+        {
+            return new NpgsqlConnection(_connectionString);
+        }
+
         private static string ConvertPostgresUriToConnectionString(string uriString)
         {
             if (string.IsNullOrWhiteSpace(uriString)) return uriString;
