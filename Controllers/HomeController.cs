@@ -4,6 +4,7 @@ using TestConsole.Services;
 using System.Collections.Generic;
 using System;
 using CourseAPI.Models;
+using System.Threading.Tasks;
 
 namespace TestConsole.Controllers
 {
@@ -231,13 +232,7 @@ namespace TestConsole.Controllers
                 Random random = new Random(); //สุ่ม
                 int readerNumber = random.Next(1000000);
                 string newName = $"{dt.Year}{dt.Month}{dt.Day}{dt.Hour}{dt.Minute}{dt.Second}{dt.Millisecond}{readerNumber}{ext}";
-                string targetDir = Path.Combine(Directory.GetCurrentDirectory(), "Images");
-                if (!Directory.Exists(targetDir))
-                {
-                    Directory.CreateDirectory(targetDir);
-                }
-                string targetPath = Path.Combine(targetDir, newName);
-
+                string targetPath = "../Images/" + newName;
                 using (FileStream fileStream = new FileStream(targetPath, FileMode.Create))
                 {
                     file.CopyTo(fileStream);
@@ -251,7 +246,38 @@ namespace TestConsole.Controllers
                 return StatusCode(500, new { message = ex.Message });
             }
         }
+
+
+
+        [HttpGet]
+        [Route("[action]")]
+        public async Task<IActionResult> MyGet()
+        {
+            try
+            {
+                HttpClient client = new HttpClient();
+                HttpResponseMessage res = await client.GetAsync("http://localhost:5000/api/Home");
+                if (res.IsSuccessStatusCode)
+                {
+                    return Ok(res.Content.ReadAsStringAsync().Result);
+                }
+                else
+                {
+                    return StatusCode(500, new { message = "Error" });
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = ex.Message });
+            }
+        }
+
+
+
+
+
     }
+
 
 }
 

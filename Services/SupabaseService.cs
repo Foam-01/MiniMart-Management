@@ -32,7 +32,7 @@ namespace TestConsole.Services
         private static string ConvertPostgresUriToConnectionString(string uriString)
         {
             if (string.IsNullOrWhiteSpace(uriString)) return uriString;
-            if (!uriString.StartsWith("postgresql://", StringComparison.OrdinalIgnoreCase) && 
+            if (!uriString.StartsWith("postgresql://", StringComparison.OrdinalIgnoreCase) &&
                 !uriString.StartsWith("postgres://", StringComparison.OrdinalIgnoreCase))
             {
                 return uriString;
