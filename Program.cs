@@ -12,8 +12,19 @@ builder.Services.AddControllers();
 builder.Services.AddSingleton<TestConsole.Services.SupabaseService>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", policy =>
+    {
+        policy.AllowAnyOrigin()
+              .AllowAnyMethod()
+              .AllowAnyHeader();
+    });
+});
 
 var app = builder.Build();
+
+app.UseCors("AllowAll");
 
 if (app.Environment.IsDevelopment() || app.Environment.IsProduction())
 {
@@ -23,7 +34,7 @@ if (app.Environment.IsDevelopment() || app.Environment.IsProduction())
 
 app.MapControllers();
 
-app.Run("http://localhost:5200");
+app.Run("http://localhost:5000");
 // using TestConsole.day8;
 
 // new NestedTryCatch();
