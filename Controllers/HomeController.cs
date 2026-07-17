@@ -184,6 +184,73 @@ namespace TestConsole.Controllers
             }
         }
 
+        [HttpDelete]
+        [Route("[action]/{id}")]
+        public IActionResult Remove(int id)
+        {
+            try
+            {
+                using var conn = _supabaseService.CreateConnection();
+                conn.Open();
+                using var cmd = conn.CreateCommand();
+                cmd.CommandText = "DELETE FROM tb_book WHERE id = @id ";
+                cmd.Parameters.AddWithValue("id", id);
+
+                if (cmd.ExecuteNonQuery() != -1)
+                {
+                    return Ok(new { message = "Delete success" });
+                }
+                else
+                {
+                    return StatusCode(404, new { message = "Book not found to delete" });
+                }
+
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = ex.Message });
+            }
+        }
+
+        [HttpPost]
+        [Route("[action]")]
+        public IActionResult UploadFile(IFormFile file)
+        {
+            try
+            {
+                if (file == null)
+                {
+                    return StatusCode(404, new { message = "No file upload" });
+                }
+                string ext = Path.GetExtension(file.FileName).ToLower();
+                if (ext != ".jpg" && ext != ".jpeg" && ext != ".png" && ext != ".gif" && ext != ".bmp")
+                {
+                    return StatusCode(400, new { message = "Invalid file type : your ext = " + ext });
+                }
+                DateTime dt = DateTime.Now; //เอาวันปัจจุบัน
+                Random random = new Random(); //สุ่ม
+                int readerNumber = random.Next(1000000);
+                string newName = $"{dt.Year}{dt.Month}{dt.Day}{dt.Hour}{dt.Minute}{dt.Second}{dt.Millisecond}{readerNumber}{ext}";
+                string targetDir = Path.Combine(Directory.GetCurrentDirectory(), "Images");
+                if (!Directory.Exists(targetDir))
+                {
+                    Directory.CreateDirectory(targetDir);
+                }
+                string targetPath = Path.Combine(targetDir, newName);
+
+                using (FileStream fileStream = new FileStream(targetPath, FileMode.Create))
+                {
+                    file.CopyTo(fileStream);
+                }
+
+                return Ok(new { message = "File uploaded successfully" });
+
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = ex.Message });
+            }
+        }
     }
 
 }
