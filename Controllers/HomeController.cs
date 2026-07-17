@@ -129,23 +129,23 @@ namespace TestConsole.Controllers
                 using var cmd = conn.CreateCommand();
                 cmd.CommandText = @"
                     UPDATE tb_book SET
-                        ISBN = @isbn,
+                        isbn = @isbn,
                         name = @name,
-                        price = @price,
-                        WHERE id = @id
+                        price = @price
+                    WHERE id = @id
                 ";
                 cmd.Parameters.AddWithValue("isbn", bookModel.isbn!);
                 cmd.Parameters.AddWithValue("name", bookModel.name!);
                 cmd.Parameters.AddWithValue("price", bookModel.price!);
                 cmd.Parameters.AddWithValue("id", bookModel.id!);
 
-                if (cmd.ExecuteNonQuery() != -1)
+                if (cmd.ExecuteNonQuery() > 0)
                 {
                     return Ok(new { message = "Book updated successfully" });
                 }
                 else
                 {
-                    return StatusCode(500, new { message = "Failed to update book" });
+                    return StatusCode(404, new { message = "Book not found to update" });
                 }
             }
             catch (Exception ex)
@@ -163,13 +163,12 @@ namespace TestConsole.Controllers
                 using var conn = _supabaseService.CreateConnection();
                 conn.Open();
                 using var cmd = conn.CreateCommand();
-                cmd.CommandText = "INSERT INFO tb_book (isbn, name, price) VALUES(@isbn, @name, @price)";
+                cmd.CommandText = "INSERT INTO tb_book (isbn, name, price) VALUES(@isbn, @name, @price)";
                 cmd.Parameters.AddWithValue("isbn", bookModel.isbn!);
                 cmd.Parameters.AddWithValue("name", bookModel.name!);
                 cmd.Parameters.AddWithValue("price", bookModel.price!);
 
-
-                if (cmd.ExecuteNonQuery() != -1)
+                if (cmd.ExecuteNonQuery() > 0)
                 {
                     return Ok(new { message = "Book created successfully" });
                 }
