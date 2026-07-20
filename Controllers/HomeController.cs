@@ -5,6 +5,12 @@ using System.Collections.Generic;
 using System;
 using CourseAPI.Models;
 using System.Threading.Tasks;
+using System.Text;
+using Microsoft.AspNetCore.DataProtection;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+
 
 namespace TestConsole.Controllers
 {
@@ -325,9 +331,52 @@ namespace TestConsole.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("[action]")]
+        public IActionResult GenerateToken(string username, string password)
+        {
+            try
+            {
+                if (username == "admin" && password == "admin")
+                {
+                    var MyConfig = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
+                    var Issuer = MyConfig.GetValue<string>("Jwt:Issuer");
+                    var Audience = MyConfig.GetValue<string>("Jwt:Audience");
+                    var Key = Encoding.ASCII.GetBytes(MyConfig.GetValue<string>("Jwt:Key")!);
 
+                    var tokenDescriptor = new SecurityTokenDescriptor
+                    {
+                        Subject = new ClaimsIdentity(new Claim[] {
+                            new Claim("id", Guid.NewGuid().ToString()),
+                            new Claim(JwtRegisteredClaimNames.Sub, username),
+                            new Claim(JwtRegisteredClaimNames.Email, "user@mail.com"),
+                            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+                        }),
+                        Expires = DateTime.Now.AddDays(1),
+                        Issuer = Issuer,
+                        Audience = Audience,
+                        SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(Key), SecurityAlgorithms.HmacSha512Signature)
+                    };
+
+                    // 4. เพิ่มคำสั่งด้านล่างนี้เพื่อสร้าง Token ออกมาเป็นข้อความ String และส่งกลับไป (Return)
+                    var tokenHandler = new JwtSecurityTokenHandler();
+                    var token = tokenHandler.CreateToken(tokenDescriptor);
+                    var JwtToken = tokenHandler.WriteToken(token);
+
+                    return Ok(new { JwtToken = JwtToken });
+                }
+
+                return Unauthorized();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = ex.Message });
+            }
+        }
 
     }
+
+
 
 
 }
