@@ -64,3 +64,13 @@ D:\Git Desktop\MiniMart-Management\obj\Debug\net10.0\TestCons.AA59A120.Up2Date
 D:\Git Desktop\MiniMart-Management\bin\Debug\net10.0\DotNetEnv.dll
 D:\Git Desktop\MiniMart-Management\bin\Debug\net10.0\Sprache.dll
 D:\Git Desktop\MiniMart-Management\bin\Debug\net10.0\Npgsql.dll
+D:\Git Desktop\MiniMart-Management\bin\Debug\net10.0\appsettings.json
+D:\Git Desktop\MiniMart-Management\bin\Debug\net10.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\Git Desktop\MiniMart-Management\bin\Debug\net10.0\Microsoft.Bcl.Cryptography.dll
+D:\Git Desktop\MiniMart-Management\bin\Debug\net10.0\Microsoft.IdentityModel.Abstractions.dll
+D:\Git Desktop\MiniMart-Management\bin\Debug\net10.0\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\Git Desktop\MiniMart-Management\bin\Debug\net10.0\Microsoft.IdentityModel.Logging.dll
+D:\Git Desktop\MiniMart-Management\bin\Debug\net10.0\Microsoft.IdentityModel.Protocols.dll
+D:\Git Desktop\MiniMart-Management\bin\Debug\net10.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+D:\Git Desktop\MiniMart-Management\bin\Debug\net10.0\Microsoft.IdentityModel.Tokens.dll
+D:\Git Desktop\MiniMart-Management\bin\Debug\net10.0\System.IdentityModel.Tokens.Jwt.dll

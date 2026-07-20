@@ -337,39 +337,47 @@ namespace TestConsole.Controllers
         {
             try
             {
+                // 1. ตรวจสอบความถูกต้องของ Username และ Password (จำลองระบบ Login)
                 if (username == "admin" && password == "admin")
                 {
+                    // 2. ดึงค่าการตั้งค่า JWT (เช่น Issuer, Audience, Key) จากไฟล์ appsettings.json
                     var MyConfig = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
                     var Issuer = MyConfig.GetValue<string>("Jwt:Issuer");
                     var Audience = MyConfig.GetValue<string>("Jwt:Audience");
                     var Key = Encoding.ASCII.GetBytes(MyConfig.GetValue<string>("Jwt:Key")!);
 
+                    // 3. กำหนดรายละเอียดของ Token (พิมพ์เขียวสำหรับสร้างบัตรผ่าน)
                     var tokenDescriptor = new SecurityTokenDescriptor
                     {
+                        // Subject: ข้อมูลตัวตนผู้ใช้งานที่จะใส่ไว้ใน Token
                         Subject = new ClaimsIdentity(new Claim[] {
-                            new Claim("id", Guid.NewGuid().ToString()),
-                            new Claim(JwtRegisteredClaimNames.Sub, username),
-                            new Claim(JwtRegisteredClaimNames.Email, "user@mail.com"),
-                            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+                            new Claim("id", Guid.NewGuid().ToString()), // ไอดีอ้างอิงสุ่ม
+                            new Claim(JwtRegisteredClaimNames.Sub, username), // ชื่อผู้ใช้ (Subject)
+                            new Claim(JwtRegisteredClaimNames.Email, "user@mail.com"), // อีเมลจำลอง
+                            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()) // เลขรหัสไอดีของ Token
                         }),
-                        Expires = DateTime.Now.AddDays(1),
-                        Issuer = Issuer,
-                        Audience = Audience,
+                        Expires = DateTime.Now.AddDays(1), // ระยะเวลาหมดอายุของ Token (1 วัน)
+                        Issuer = Issuer, // แหล่งผู้ออก Token
+                        Audience = Audience, // ผู้มีสิทธิ์รับ/ใช้งาน Token
+                        // นำกุญแจลับ (Key) มาเซ็นกำกับลายเซ็นดิจิทัลท้าย Token ด้วยอัลกอริทึม HmacSha512
                         SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(Key), SecurityAlgorithms.HmacSha512Signature)
                     };
 
-                    // 4. เพิ่มคำสั่งด้านล่างนี้เพื่อสร้าง Token ออกมาเป็นข้อความ String และส่งกลับไป (Return)
+                    // 4. เริ่มขั้นตอนการปั๊มเหรียญ Token ออกมาเป็นข้อความ
                     var tokenHandler = new JwtSecurityTokenHandler();
-                    var token = tokenHandler.CreateToken(tokenDescriptor);
-                    var JwtToken = tokenHandler.WriteToken(token);
+                    var token = tokenHandler.CreateToken(tokenDescriptor); // สร้างก้อนข้อมูล Token ตามพิมพ์เขียว
+                    var JwtToken = tokenHandler.WriteToken(token); // แปลงก้อนข้อมูล Token ให้เป็นสายอักขระ String ยาวๆ
 
+                    // ส่ง Token ที่สร้างเสร็จกลับไปให้ไคลเอนต์ใช้งาน
                     return Ok(new { JwtToken = JwtToken });
                 }
 
+                // หากกรอก Username หรือ Password ไม่ถูกต้อง ส่งผลลัพธ์ 401 Unauthorized กลับไป
                 return Unauthorized();
             }
             catch (Exception ex)
             {
+                // หากระบบเกิดข้อผิดพลาด ส่งผลลัพธ์ 500 Internal Server Error กลับไป
                 return StatusCode(500, new { message = ex.Message });
             }
         }
