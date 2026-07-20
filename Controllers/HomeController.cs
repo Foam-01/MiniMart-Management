@@ -309,7 +309,7 @@ namespace TestConsole.Controllers
             try
             {
                 HttpClient client = new HttpClient();
-                HttpResponseMessage res = await client.DeleteAsync("http://localhost:5000/api/Home/Remove/ " + id);
+                HttpResponseMessage res = await client.DeleteAsync("http://localhost:5000/api/Home/Remove/" + id);
                 if (res.IsSuccessStatusCode)
                 {
                     return Ok(await res.Content.ReadAsStringAsync());
