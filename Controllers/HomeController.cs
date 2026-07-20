@@ -251,7 +251,7 @@ namespace TestConsole.Controllers
 
         [HttpGet]
         [Route("[action]")]
-        public async Task<IActionResult> MyGet()
+        public async Task<IActionResult> MyGet2()
         {
             try
             {
@@ -259,7 +259,36 @@ namespace TestConsole.Controllers
                 HttpResponseMessage res = await client.GetAsync("http://localhost:5000/api/Home");
                 if (res.IsSuccessStatusCode)
                 {
-                    return Ok(res.Content.ReadAsStringAsync().Result);
+                    return Ok(await res.Content.ReadAsStringAsync());
+                }
+                else
+                {
+                    return StatusCode(500, new { message = "Error" });
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = ex.Message });
+            }
+        }
+
+        [HttpPut]
+        [Route("[action]")]
+        public async Task<IActionResult> MyPut2()
+        {
+            try
+            {
+                HttpClient client = new HttpClient();
+                HttpResponseMessage res = await client.PutAsJsonAsync("http://localhost:5000/api/Home/Create", new
+                {
+                    id = 3,
+                    isbn = "978-616-7027-20-4",
+                    name = "Book 3",
+                    price = 300
+                });
+                if (res.IsSuccessStatusCode)
+                {
+                    return Ok(await res.Content.ReadAsStringAsync());
                 }
                 else
                 {
@@ -273,6 +302,28 @@ namespace TestConsole.Controllers
         }
 
 
+        [HttpDelete]
+        [Route("[action]")]
+        public async Task<IActionResult> MyDelete2(int id)
+        {
+            try
+            {
+                HttpClient client = new HttpClient();
+                HttpResponseMessage res = await client.DeleteAsync("http://localhost:5000/api/Home/Remove/ " + id);
+                if (res.IsSuccessStatusCode)
+                {
+                    return Ok(await res.Content.ReadAsStringAsync());
+                }
+                else
+                {
+                    return StatusCode(500, new { message = "Error" });
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = ex.Message });
+            }
+        }
 
 
 
