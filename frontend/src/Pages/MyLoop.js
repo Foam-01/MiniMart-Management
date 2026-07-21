@@ -1,3 +1,5 @@
+import MyComponent from "../shared/components/MyComponent";
+
 function MyLoop() {
     const arr = ['java', 'php', 'c#', 'c/c++', 'python']
 
@@ -8,6 +10,10 @@ function MyLoop() {
             {arr.map((item,index) => (
                 <div key={item}>{index}:{item}</div>
             ))}
+            <MyComponent title = 'my title' name= 'Foam' > 
+               <button>My Button</button>
+               
+            </MyComponent>
         </>
     )
 }

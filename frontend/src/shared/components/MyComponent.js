@@ -1,11 +1,12 @@
-function MyComponent() {
+function MyComponent(props) {
     return (
         <>
-            <div>aaa</div>
-            <div>bbb</div>
-            <div>ccc</div>
-            <div>ddd</div>
-            <div>eee</div>
+            <div>{props.title}</div>
+            <div>{props.name}</div>
+            <p style={{ backgroundColor: 'red',padding: '10px'}}> 
+                {props.children}
+            </p>
+                
         </>
     )
 }

@@ -9,7 +9,7 @@ import MyLoop from './Pages/MyLoop';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
  
-    <App />
+    <MyLoop />
   
 );
 
