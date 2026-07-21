@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.DataProtection;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 
 
 namespace TestConsole.Controllers
@@ -380,6 +381,14 @@ namespace TestConsole.Controllers
                 // หากระบบเกิดข้อผิดพลาด ส่งผลลัพธ์ 500 Internal Server Error กลับไป
                 return StatusCode(500, new { message = ex.Message });
             }
+        }
+
+        [HttpGet]
+        [Route("[action]")]
+        [Authorize]
+        public IActionResult SayHello()
+        {
+            return Ok(new { message = "Hello " });
         }
 
     }
